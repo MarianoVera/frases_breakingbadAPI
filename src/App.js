@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Frase from './components/Frase';
 import styled from "@emotion/styled";
 
@@ -21,8 +21,14 @@ const Boton = styled.button`
   color: #fff;
   margin-top: 3rem;
   padding: 1rem 3rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border: 2px solid black;
+  transition: background-size .8s ease;
+
+  :hover {
+    cursor: pointer;
+    background-size: 400px;
+  }
 `;
 
 function App() {
@@ -34,6 +40,10 @@ function App() {
     const frase = await api.json();
     guardarFrase(frase[0])
   }
+
+  useEffect( () => {
+    consultarApi()
+  }, []);
    
   return ( <Contenedor>
             <Frase
